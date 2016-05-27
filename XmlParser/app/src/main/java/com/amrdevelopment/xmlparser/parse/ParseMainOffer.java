@@ -1,9 +1,5 @@
-package com.amrdevelopment.parser.parse;
+package com.amrdevelopment.xmlparser.parse;
 
-import com.amrdevelopment.parser.model.Merchant;
-import com.amrdevelopment.parser.model.Picture;
-import com.amrdevelopment.parser.model.Place;
-import com.amrdevelopment.parser.model.Validation;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -16,10 +12,10 @@ import java.util.List;
 @ParseClassName("ParseMainOffer")
 public class ParseMainOffer extends ParseObject {
 
-    private Validation validation;
-    private List<Picture> pictures;
-    private Merchant merchants;
-    private List<Place> places;
+    private ParseValidation validation;
+    private List<ParsePicture> pictures;
+    private ParseMerchant merchants;
+    private List<ParsePlace> places;
 
     public ParseMainOffer () {}
 

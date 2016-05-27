@@ -1,4 +1,4 @@
-package com.amrdevelopment.parser.parse;
+package com.amrdevelopment.xmlparser.parse;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
