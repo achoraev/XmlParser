@@ -22,13 +22,17 @@ public class Application extends android.app.Application{
         ParseObject.registerSubclass(ParsePrice.class);
         ParseObject.registerSubclass(ParseValidation.class);
 
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                        .applicationId("i22R4Pu2LfoJfxCsBZcAseFwVrcFLcv28cSELAF2")
-                        .clientKey("c1qyL40oPnQSrhRPS7oQQe4XE5qzt75XWVQIWXed")
-                        .server("https://gepioferta.azurewebsites.net/parse/")
-//                .enableLocalDataStore()
-                        .build()
-        );
+        // parse server
+        Parse.initialize(this, "i22R4Pu2LfoJfxCsBZcAseFwVrcFLcv28cSELAF2", "c1qyL40oPnQSrhRPS7oQQe4XE5qzt75XWVQIWXed");
+
+        // own parse server
+//        Parse.initialize(new Parse.Configuration.Builder(this)
+//                        .applicationId("i22R4Pu2LfoJfxCsBZcAseFwVrcFLcv28cSELAF2")
+//                        .clientKey("c1qyL40oPnQSrhRPS7oQQe4XE5qzt75XWVQIWXed")
+//                        .server("https://gepioferta.azurewebsites.net/parse/")
+////                .enableLocalDataStore()
+//                        .build()
+//        );
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
     }
