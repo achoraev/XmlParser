@@ -14,7 +14,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Main {
@@ -23,8 +22,8 @@ public class Main {
 
         List<MainOffer> allDeals = new ArrayList<MainOffer>();
 
-        Offers dealsBgOffers = DealsBgParser();
-        allDeals.addAll(convertDealBgOffers(dealsBgOffers));
+
+//        allDeals.addAll(convertDealBgOffers(dealsBgOffers));
 
         Deals vipOfertaOffers = vipOfertaParser();
 
@@ -40,15 +39,15 @@ public class Main {
 
 //        partners.grupovo.Item grupovoOffers = grupovoParser();
 
-        int offerCount = (dealsBgOffers.getOffers().size()) +
-                (vipOfertaOffers.getDeals().size()) +
+        int offerCount = ((vipOfertaOffers.getDeals().size()) +
                 (grupoOffers.getOffers().size()) +
-                (rioOffers.getOffers().size());
+                (rioOffers.getOffers().size()));
         System.out.println("Oferti: " + offerCount);
     }
 
-    private static Collection<? extends MainOffer> convertDealBgOffers(Offers dealsBgOffers) {
+    public static List<MainOffer> convertDealBgOffers() throws JAXBException {
         List<MainOffer> result = new ArrayList<MainOffer>();
+        Offers dealsBgOffers = DealsBgParser();
         for (Offer off : dealsBgOffers.getOffers()){
             Price price = new Price();
             price.setOriginalPrice(off.getOriginalPrice());

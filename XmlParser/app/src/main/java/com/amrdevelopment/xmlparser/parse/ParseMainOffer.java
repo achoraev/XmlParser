@@ -19,11 +19,11 @@ public class ParseMainOffer extends ParseObject {
 
     public ParseMainOffer () {}
 
-    public Integer getId() {
-        return getInt("id");
+    public String getId() {
+        return getString("id");
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         put("id", id);
     }
 
