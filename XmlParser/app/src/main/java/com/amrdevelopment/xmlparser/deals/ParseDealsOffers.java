@@ -1,7 +1,6 @@
 package com.amrdevelopment.xmlparser.deals;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import com.amrdevelopment.xmlparser.R;
 import com.amrdevelopment.xmlparser.parse.ParseMainOffer;
 import org.xmlpull.v1.XmlPullParser;
@@ -17,8 +16,7 @@ import java.util.List;
 /**
  * Created on 01-Jun-16
  */
-public class ParseDealsOffers extends AppCompatActivity{
-
+public class ParseDealsOffers {
 
     private String Id = "";
     private String cities = "";
