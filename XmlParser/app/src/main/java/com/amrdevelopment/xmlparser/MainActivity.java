@@ -7,6 +7,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.amrdevelopment.xmlparser.deals.ParseDealsOffers;
 import com.amrdevelopment.xmlparser.parse.ParseMainOffer;
+import com.parse.ParseException;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -22,24 +24,6 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         new LoadXMLDeals().execute();
-
-//        ParseMainOffer current = new ParseMainOffer();
-//        current.setId(123456);
-//        current.setCities("Cities");
-//        current.setCategories("Categories");
-//        current.setTitle("Title");
-//        current.setDescription("Desc");
-//        current.setTerms("Terms");
-////        current.setPrice(price);
-//        current.setSold(150);
-////        current.setValidation(valid);
-//        current.setLink("Link");
-////        current.setPictures(pics);
-////        current.setMerchants(currentMerc);
-//        current.setPriority(100);
-//        current.setRpvlt(10);
-//        current.setRpv24(24);
-//        current.saveInBackground();
     }
 
     class LoadXMLDeals extends AsyncTask<Void, Integer, List<ParseMainOffer>> {
@@ -51,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected List<ParseMainOffer> doInBackground(Void... params) {
-            List<ParseMainOffer> dealsOffers =  new ParseDealsOffers().createPullParser(getApplicationContext());
+            List<ParseMainOffer> currentOffers =  new ParseDealsOffers().createPullParser(getApplicationContext());
             for (int i = 1; i < 100; i++) {
                 publishProgress(i);
             }
-            return dealsOffers;
+            return currentOffers;
         }
 
         @Override
@@ -65,9 +49,28 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<ParseMainOffer> result) {
+            saveDataOnParse(result);
             Toast.makeText(MainActivity.this, "Size is: " + result.size(), Toast.LENGTH_LONG).show();
             mProgressBar.setVisibility(ProgressBar.INVISIBLE);
         }
 
+    }
+
+    private void saveDataOnParse(List<ParseMainOffer> dealsOffers) {
+        for(int i = 0; i < 5; i++){
+            ParseMainOffer cur = dealsOffers.get(i);
+            final int finalI = i;
+            // todo check if id exists
+            cur.saveEventually(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null) {
+                        Toast.makeText(MainActivity.this, String.format("Object %d is save successfully!", finalI), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 }

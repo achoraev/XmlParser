@@ -22,27 +22,26 @@ public class Main {
 
         List<MainOffer> allDeals = new ArrayList<MainOffer>();
 
+        allDeals.addAll(convertDealBgOffers());
 
-//        allDeals.addAll(convertDealBgOffers(dealsBgOffers));
-
-        Deals vipOfertaOffers = vipOfertaParser();
+//        Deals vipOfertaOffers = vipOfertaParser();
 
 //        Deals onFireDeals = onFireParser();
 
-        com.amrdevelopment.parser.partners.grupo.Offers grupoOffers = grupoParser();
+//        com.amrdevelopment.parser.partners.grupo.Offers grupoOffers = grupoParser();
 
 //        graboParser();
 
-        com.amrdevelopment.parser.partners.riobg.Offers rioOffers = riobgParser();
+//        com.amrdevelopment.parser.partners.riobg.Offers rioOffers = riobgParser();
 
 //        vsichkiOfertiParser();
 
 //        partners.grupovo.Item grupovoOffers = grupovoParser();
 
-        int offerCount = ((vipOfertaOffers.getDeals().size()) +
-                (grupoOffers.getOffers().size()) +
-                (rioOffers.getOffers().size()));
-        System.out.println("Oferti: " + offerCount);
+//        int offerCount = ((vipOfertaOffers.getDeals().size()) +
+//                (grupoOffers.getOffers().size()) +
+//                (rioOffers.getOffers().size()));
+//        System.out.println("Oferti: " + offerCount);
     }
 
     public static List<MainOffer> convertDealBgOffers() throws JAXBException {
@@ -92,6 +91,7 @@ public class Main {
             result.add(current);
         }
 
+        System.out.println("Oferti: " + result.size());
         return result;
     }
 
